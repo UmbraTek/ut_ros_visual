@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ut_ros_visual</name>
+  <version>0.1.1</version>
+  <description>
+    this project is the ros visual demo on utra
+  </description>
+  <maintainer email="johnson@umbratek.com">johnson</maintainer>
+  <license>BSD</license>
+  <url type="website">http://www.umbratek.com</url>
+  <author email="johnson@umbratek.com">johnson</author>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+</package>

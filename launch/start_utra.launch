@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+   
+    <include file="$(find utra_controller)/launch/utra_server.launch">
+        <arg name="utra_ip" value="192.168.1.28" />
+    </include>
+    <include file="$(find utra6_850_moveit_gripper_config)/launch/run_with_utra.launch"/>
+
+</launch>

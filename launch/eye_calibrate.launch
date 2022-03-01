@@ -1,0 +1,54 @@
+<launch>
+    <!-- https://zhuanlan.zhihu.com/p/92339362 -->
+
+    <arg name="namespace_prefix" default="utra_realsense_handeyecalibration" />
+
+    <arg name="utra_ip"  default="192.168.1.28"/>
+    <arg name="utra_type"  default="850"/> <!--550 850 1000-->
+
+    <arg name="marker_size" doc="Size of the ArUco marker used, in meters" default="0.1" /> <!--unit is meter-->
+    <arg name="marker_id" doc="The ID of the ArUco marker used" default="582"/>
+
+    <!-- 1. start the Realsense435 -->
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch" />
+
+    <!-- 2. start ArUco -->
+    <node name="aruco_tracker" pkg="aruco_ros" type="single">
+        <remap from="/camera_info" to="/camera/color/camera_info" />
+        <remap from="/image" to="/camera/color/image_raw" />
+        <param name="image_is_rectified" value="true"/>
+        <param name="marker_size"        value="$(arg marker_size)"/>
+        <param name="marker_id"          value="$(arg marker_id)"/>
+        <param name="reference_frame"    value="camera_color_frame"/>
+        <param name="camera_frame"       value="camera_color_frame"/>
+        <param name="marker_frame"       value="camera_marker" />
+    </node>
+
+    <!-- 3. start the robot -->
+    <include file="$(find utra_controller)/launch/utra_server.launch">
+        <arg name="utra_ip" value="$(arg utra_ip)" />
+    </include>
+    <include if="$(eval arg('utra_type') == 550)" file="$(find utra6_50_moveit_config)/launch/utra_moveit_planning_execution.launch"/>
+    <include if="$(eval arg('utra_type') == 850)" file="$(find utra6_850_moveit_config)/launch/utra_moveit_planning_execution.launch"/>
+    <include if="$(eval arg('utra_type') == 1000)" file="$(find utra6_1000_moveit_config)/launch/utra_moveit_planning_execution.launch"/>
+
+    <!-- 4. start easy_handeye -->
+    <include file="$(find easy_handeye)/launch/calibrate.launch" >
+        <arg name="namespace_prefix" value="$(arg namespace_prefix)" />
+
+        <!-- eye-on-hand is true -->
+        <!-- eye_on_base is false -->
+        <arg name="eye_on_hand" value="true" />
+
+        <arg name="tracking_base_frame" value="camera_color_frame" />
+        <arg name="tracking_marker_frame" value="camera_marker" />
+        <arg name="robot_base_frame" value="base_link" />
+        <arg if="$(arg eye_on_hand)"  name="robot_effector_frame" value="d435i" />
+        <arg unless="$(arg eye_on_hand)"  name="robot_effector_frame" value="link_6" />
+
+        <arg name="freehand_robot_movement" value="false" />
+        <arg name="robot_velocity_scaling" value="0.2" />
+        <arg name="robot_acceleration_scaling" value="0.2" />
+    </include>
+
+</launch>

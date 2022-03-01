@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+   
+    <node pkg="ut_ros_visual" name="rqt_graspe" type="rqt_graspe.py" output="screen"/>
+</launch>

@@ -2,7 +2,7 @@
 roslaunch utra_ros_visual publish_tf.launch
 
 2.
-进入/ut_ros_visual/scripts/yolov5_ros目录
+进入/utra_ros_visual/scripts/yolov5_ros目录
 python3 ros.py
 
 3.

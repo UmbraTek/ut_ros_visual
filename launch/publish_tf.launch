@@ -16,8 +16,8 @@
     <arg name="tracking_base_frame" default="" />
     
     <arg name="inverse" default="false" />
-    <arg if="$(arg eye_on_hand)" name="calibration_file" default="$(find ut_ros_visual)/config/utra_realsense_handeyecalibration_eye_on_hand.yaml" />
-    <arg unless="$(arg eye_on_hand)" name="calibration_file" default="$(find ut_ros_visual)/config/utra_realsense_handeyecalibration_eye_on_base.yaml" />
+    <arg if="$(arg eye_on_hand)" name="calibration_file" default="$(find utra_ros_visual)/config/utra_realsense_handeyecalibration_eye_on_hand.yaml" />
+    <arg unless="$(arg eye_on_hand)" name="calibration_file" default="$(find utra_ros_visual)/config/utra_realsense_handeyecalibration_eye_on_base.yaml" />
     
     <!--publish hand-eye calibration-->
     <group ns="$(arg namespace)">
@@ -30,5 +30,5 @@
         <node name="$(anon handeye_publisher)" pkg="easy_handeye" type="publish.py" output="screen"/>
     </group>
 
-    <node pkg="ut_ros_visual" name="publish_bottle_tf" type="publish_bottle_tf.py" output="screen"/>
+    <node pkg="utra_ros_visual" name="publish_bottle_tf" type="publish_bottle_tf.py" output="screen"/>
 </launch>

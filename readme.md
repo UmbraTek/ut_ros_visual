@@ -42,9 +42,9 @@ roslaunch utra_ros_visual publish_tf.launch
 ```
 
 # 3 Open the yolov5 detect target
-Open the yolov5 detect target, **you sure pip3 install the ut_ros_visual/scripts/yolov5_ros/requirements**
+Open the yolov5 detect target, **you sure pip3 install the utra_ros_visual/scripts/yolov5_ros/requirements**
 ```
-python3 ut_ros_visual/scripts/detect.py
+python3 utra_ros_visual/scripts/detect.py
 ```
 <img src="./doc/img/2.png" width="252"/> 
 

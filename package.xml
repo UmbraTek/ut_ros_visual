@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>ut_ros_visual</name>
+  <name>utra_ros_visual</name>
   <version>0.1.1</version>
   <description>
     this project is the ros visual demo on utra

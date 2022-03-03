@@ -41,5 +41,5 @@
 运行
 提示：可以使用拖动示教来手动设置机械臂的17个pose,这样来完成手眼标定计算
 ```
-roslaunch ut_ros_visual  eye_calibrate.launch
+roslaunch utra_ros_visual  eye_calibrate.launch
 ```
